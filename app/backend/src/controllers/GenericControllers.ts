@@ -50,7 +50,6 @@ class GenericController<T, TM> {
       return res.status(200).json({ message: 'Deletado com sucesso.' });
     } catch (error) {
       const { message } = error as Error;
-      console.log(message);
       return res.status(401).json({ message });
     }
   }
