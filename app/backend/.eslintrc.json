@@ -27,7 +27,6 @@
     "rules": {
         "no-underscore-dangle": "off",
         "no-console": "off",
-        "camelcase": "warn",
         "arrow-parens": [2, "always"],
         "quotes": [2, "single"],
         "implicit-arrow-linebreak": "off",
