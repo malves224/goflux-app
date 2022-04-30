@@ -35,9 +35,9 @@ export default class ShipperService implements Service<IShipper, Shipper> {
     }
   }
 
-  async create(shiper: IShipper) {
-    await this.checkIfExist(['doc', shiper.doc], { erroIfExist: true });
-    return this.model.create(shiper);
+  async create(shipper: IShipper) {
+    await this.checkIfExist(['doc', shipper.doc], { erroIfExist: true });
+    return this.model.create(shipper);
   }
 
   async findAll() {
@@ -55,6 +55,7 @@ export default class ShipperService implements Service<IShipper, Shipper> {
 
   async update(id: string | number, shipper: IShipper) {
     await this.checkIfExist(['id', id]);
+    await this.checkIfExist(['doc', shipper.doc], { erroIfExist: true });
     return this.model.update(shipper, { where: { id } });
   }
 
