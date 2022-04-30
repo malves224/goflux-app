@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import { Model, DataTypes } from 'sequelize';
 import db from '../config';
 import Bid from './bid';
