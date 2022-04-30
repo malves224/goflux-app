@@ -1,9 +1,9 @@
 import Offer from '../database/models/offer';
 import Shipper from '../database/models/shipper';
 import { Service } from '../interfaces/Service';
-import { IShiper } from '../interfaces/Shiper';
+import { IShipper, IShipperWithOffers } from '../interfaces/Shiper';
 
-export default class ShipperService implements Service<IShiper, Shipper> {
+export default class ShipperService implements Service<IShipper, Shipper> {
   private model = Shipper;
 
   private modelRelations = Offer;
@@ -20,12 +20,22 @@ export default class ShipperService implements Service<IShiper, Shipper> {
       throw new Error(`${column}: ${value} não existe.`);
     }
 
-    if (options.erroIfExist) {
+    if (options.erroIfExist && obj) {
       throw new Error(`${column}: ${value} já existe.`);
     }
   }
 
-  async create(shiper: IShiper) {
+  async checkIfHasOffers(id: string | number): Promise<Error | void> {
+    const shipper = await this.model.findOne(
+      { where: { id }, include: { model: Offer, as: 'offers' } },
+    ) as unknown as IShipperWithOffers;
+
+    if (shipper.offers.length) {
+      throw new Error('Não é possivel excluir um embarcador com ofertas.');
+    }
+  }
+
+  async create(shiper: IShipper) {
     await this.checkIfExist(['doc', shiper.doc], { erroIfExist: true });
     return this.model.create(shiper);
   }
@@ -43,13 +53,14 @@ export default class ShipperService implements Service<IShiper, Shipper> {
     );
   }
 
-  async update(id: string | number, shipper: IShiper) {
+  async update(id: string | number, shipper: IShipper) {
     await this.checkIfExist(['id', id]);
     return this.model.update(shipper, { where: { id } });
   }
 
   async delete(id: string | number) {
     await this.checkIfExist(['id', id]);
-    return this.model.destroy({ where: { id } });
+    await this.checkIfHasOffers(id);
+    await this.model.destroy({ where: { id } });
   }
 }
