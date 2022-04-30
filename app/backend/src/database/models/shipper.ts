@@ -25,6 +25,7 @@ Shipper.init(
     doc: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
     },
     about: {
       type: DataTypes.STRING,
