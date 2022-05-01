@@ -181,10 +181,9 @@ describe('ShiperService: ', () => {
       Sinon.restore();
     });
 
-    it('Retorna o numero 1, ao deletar.', async () => {
+    it('Chama os models correto ao deletar.', async () => {
       const object = await shiperService.delete("1");
       expect(checkIfExist.calledWith()).to.be.equals(true);
-      expect(checkIfHasOffers.calledWith()).to.be.equals(true);
       expect(updateModel.calledWith()).to.be.equals(true);
     });
   });
