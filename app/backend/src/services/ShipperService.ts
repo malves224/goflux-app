@@ -36,6 +36,15 @@ export default class ShipperService implements Service<IShipper, Shipper> {
     }
   }
 
+  async checkIfItActive(id: string | number): Promise<Error | void> {
+    const shipper = await this.model
+      .findOne({ where: { id } }) as unknown as IShipperWithOffers;
+
+    if (!shipper.active) {
+      throw new Error(`${shipper.name} não esta ativo.`);
+    }
+  }
+
   async create(shipper: IShipper) {
     await this.checkIfExist(['doc', shipper.doc], { erroIfExist: true });
     return this.model.create(shipper);
@@ -63,6 +72,6 @@ export default class ShipperService implements Service<IShipper, Shipper> {
   async delete(id: string | number) {
     await this.checkIfExist(['id', id]);
     await this.checkIfHasOffers(id);
-    await this.model.destroy({ where: { id } });
+    await this.model.update({ active: false }, { where: { id } });
   }
 }
