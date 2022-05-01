@@ -31,13 +31,6 @@ class ShipperAndConveyorsSchema {
     active: Joi.boolean().required(),    
     site: Joi.string().required().messages(this.typeMessage.site),
   });
-
-  validate(obj: any) {
-    const { error } = this.schema.validate(obj);
-    if (error) {
-      throw new Error(error?.details[0].message);
-    }    
-  }
 }
 
 export default ShipperAndConveyorsSchema;

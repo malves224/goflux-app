@@ -1,12 +1,22 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { Service } from '../interfaces/Service';
+import ShipperAndConveyorsSchema from '../schema/ShipperAndConveyors';
 
 class GenericController<T, TM> {
   constructor(
     public route: string,
     public service: Service<T, TM>,
+    public schema: ShipperAndConveyorsSchema['schema'],
     public msgNotFound = 'Objeto não encontrado',
   ) {}
+
+  validationsSchema = (req: Request, res: Response, next: NextFunction) => {
+    const { error } = this.schema.validate(req.body);
+    if (error) {
+      return res.status(400).json({ message: error?.details[0].message });
+    }
+    return next();
+  };
 
   async findAll(_req: Request, res: Response<TM[]>) {
     const list = await this.service.findAll();
