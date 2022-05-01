@@ -73,7 +73,6 @@ export default class ShipperService implements Service<IShipper, Shipper> {
 
   async delete(id: string | number) {
     await this.checkIfExist(['id', id]);
-    await this.checkIfHasOffers(id);
     await this.model.update({ active: false }, { where: { id } });
   }
 }
