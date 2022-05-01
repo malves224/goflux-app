@@ -67,7 +67,7 @@ export default class OfferService implements Service<IOffer, Offer> {
 
   async delete(id: string | number) {
     await this.checkIfExist(['id', id]);
-    // excluir lances vinculados
+    await this.modelRelations.destroy({ where: { id_offer: id } });
     await this.model.destroy({ where: { id } });
   }
 }
