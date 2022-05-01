@@ -1,3 +1,4 @@
+import { Model, ModelStatic } from 'sequelize';
 import Offer from '../database/models/offer';
 import Shipper from '../database/models/shipper';
 import { Service } from '../interfaces/Service';
@@ -5,8 +6,9 @@ import { IShipper, IShipperWithOffers } from '../interfaces/Shiper';
 
 export default class ShipperService implements Service<IShipper, Shipper> {
   constructor(
+    private tableNameRelations: string = Offer.tableName,
     public model = Shipper,
-    private modelRelations = Offer,
+    private modelRelations: ModelStatic<Model> = Offer,
   ) {}
 
   async checkIfExist(
@@ -58,7 +60,7 @@ export default class ShipperService implements Service<IShipper, Shipper> {
     return this.model.findOne(
       {
         where: { id },
-        include: { model: Offer, as: 'offers' },
+        include: { model: this.modelRelations, as: this.tableNameRelations },
       },
     );
   }
