@@ -11,6 +11,10 @@ export default class ShipperService implements Service<IShipper, Shipper> {
     private modelRelations: ModelStatic<Model> = Offer,
   ) {}
 
+  findAllActive() {
+    return this.model.findAll({ where: { active: true } });
+  }
+
   async checkIfExist(
     columnWithValue: [string, string | number], 
     options = { erroIfExist: false },
