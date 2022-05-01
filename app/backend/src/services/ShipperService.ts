@@ -4,7 +4,7 @@ import { Service } from '../interfaces/Service';
 import { IShipper, IShipperWithOffers } from '../interfaces/Shiper';
 
 export default class ShipperService implements Service<IShipper, Shipper> {
-  private model = Shipper;
+  model = Shipper;
 
   private modelRelations = Offer;
 
