@@ -2,6 +2,8 @@ import { Model, DataTypes } from 'sequelize';
 import db from '../config';
 
 class Bid extends Model {
+  id!: number;
+
   id_provider!: number;
 
   id_offer!: number;
@@ -13,6 +15,10 @@ class Bid extends Model {
 
 Bid.init(
   {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+    },
     id_provider: {
       type: DataTypes.INTEGER,
       allowNull: false,
