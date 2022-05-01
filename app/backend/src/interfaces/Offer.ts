@@ -1,6 +1,9 @@
 export interface IOffer {
-  id_provider: number,
-  id_offer: number,
-  value: number,
-  amount: number
+  id?: number;
+  id_customer: number;
+  from: string;
+  to: string;
+  initial_value: number,
+  amount: number,
+  amount_type: string
 }
