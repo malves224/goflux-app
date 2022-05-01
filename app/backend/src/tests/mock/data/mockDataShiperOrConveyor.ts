@@ -17,6 +17,11 @@ export const newObjectCreated: IShipper = {
   "site": "https://goflux.com.br/"
 }
 
+export const newObjectCreatedWithOffers = {
+  ...newObjectCreated,
+  offers: []
+}
+
 export const listObject: IShipper[] = [
   {...newObjectCreated},
   {
