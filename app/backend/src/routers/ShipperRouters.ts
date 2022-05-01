@@ -2,7 +2,6 @@ import { Router } from 'express';
 import ShipperController from '../controllers/ShipperController';
 
 const shipperController = new ShipperController('/embarcador');
-shipperController.msgNotFound = 'Embarcador não encontrado';
 const { route, validationsSchema } = shipperController;
 const routeId = `${route}/:id`;
 const shipperRouter = Router();

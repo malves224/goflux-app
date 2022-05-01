@@ -7,7 +7,6 @@ class GenericController<T, TM> {
     public route: string,
     public service: Service<T, TM>,
     public schema: ShipperAndConveyorsSchema['schema'],
-    public msgNotFound = 'Objeto não encontrado',
   ) {}
 
   validationsSchema = (req: Request, res: Response, next: NextFunction) => {
@@ -28,7 +27,7 @@ class GenericController<T, TM> {
 
     if (!obj) {
       return res.status(404)
-        .json({ message: this.msgNotFound }); 
+        .json({ message: `${this.route.slice(1)} não encontrado` }); 
     }
 
     return res.status(200).json(obj);
