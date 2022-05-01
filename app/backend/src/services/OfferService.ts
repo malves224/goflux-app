@@ -2,11 +2,13 @@ import Offer from '../database/models/offer';
 import { Service } from '../interfaces/Service';
 import { IOffer } from '../interfaces/Offer';
 import Bid from '../database/models/bid';
+import ShipperService from './ShipperService';
 
 export default class OfferService implements Service<IOffer, Offer> {
   constructor(
     public model = Offer,
     private modelRelations = Bid,
+    private serviceOwner = new ShipperService(),
   ) {}
 
   async checkIfExist(
@@ -23,6 +25,8 @@ export default class OfferService implements Service<IOffer, Offer> {
   }
 
   async create(obj: IOffer): Promise<Offer> {
+    await this.serviceOwner.checkIfExist(['id', obj.id_customer]);
+    await this.serviceOwner.checkIfItActive(obj.id_customer);
     return this.model.create(obj);
   }
 
@@ -41,11 +45,17 @@ export default class OfferService implements Service<IOffer, Offer> {
 
   async update(id: string | number, shipper: IOffer) {
     await this.checkIfExist(['id', id]);
-    return this.model.update(shipper, { where: { id } });
+    const shipperCopy = { ...shipper } as { id_customer?: number };
+    delete shipperCopy.id_customer;
+    return this.model.update(
+      shipperCopy, 
+      { where: { id } },
+    );
   }
 
   async delete(id: string | number) {
     await this.checkIfExist(['id', id]);
+    // excluir lances vinculados
     await this.model.destroy({ where: { id } });
   }
 }
