@@ -34,6 +34,18 @@ export default class OfferService implements Service<IOffer, Offer> {
     return this.model.findAll();
   }
 
+  async findAllActive() {
+    const query = `SELECT os.id, os.id_customer, 
+    os.from, os.to, os.initial_value, os.amount, os.amount_type 
+    FROM offers as os
+    INNER JOIN shippers AS sp
+    ON sp.id = os.id_customer
+    WHERE sp.active = true
+    `;
+    const [response] = await this.model.sequelize?.query(query) ?? [];
+    return response as IOffer[];
+  }
+
   async findOne(id: string | number) {
     return this.model.findOne(
       {

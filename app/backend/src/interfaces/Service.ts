@@ -13,4 +13,7 @@ export interface Service<T, TM> {
   update(id: string | number, obj: T): Promise<[number, TM[]]>
 
   delete(id: string | number): Promise<void>
+
+  findAllActive(): Promise<unknown[] | TM[] | undefined>
+
 }

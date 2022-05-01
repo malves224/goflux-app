@@ -22,6 +22,11 @@ class GenericController<T, TM> {
     return res.status(200).json(list);
   }
 
+  async findAllActive(_req: Request, res: Response<TM[]>) {
+    const list = await this.service.findAllActive() as TM[];
+    return res.status(200).json(list);
+  }
+
   async findOne(req: Request, res: Response) {
     const obj = await this.service.findOne(req.params.id);
 
