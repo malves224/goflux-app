@@ -12,7 +12,7 @@ class Offer {
     },
     initial_value: {
       'any.required': 'Valor incial é obrigatório.',
-      'number.base': 'Site com tipo de dado errado.',
+      'number.base': 'Valor inicial com tipo de dado errado.',
     },
     amount: {
       'any.required': 'Quantidade é obrigatório.',
