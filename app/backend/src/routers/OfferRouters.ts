@@ -9,10 +9,10 @@ const offerRouter = Router();
 
 offerRouter
   .get(routeId, (req, res) => offerController.findOne(req, res))
+  .get(route, (req, res) => offerController.findAllActive(req, res))
   .put(routeId, validationsSchema, (req, res) => offerController
     .update(req, res))
   .delete(routeId, (req, res) => offerController.delete(req, res))
-  .get(route, (req, res) => offerController.findAll(req, res))
   .post(route, validationsSchema, (req, res) => offerController
     .create(req, res));
 
