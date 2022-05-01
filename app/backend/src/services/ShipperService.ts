@@ -4,9 +4,10 @@ import { Service } from '../interfaces/Service';
 import { IShipper, IShipperWithOffers } from '../interfaces/Shiper';
 
 export default class ShipperService implements Service<IShipper, Shipper> {
-  model = Shipper;
-
-  private modelRelations = Offer;
+  constructor(
+    public model = Shipper,
+    private modelRelations = Offer,
+  ) {}
 
   async checkIfExist(
     columnWithValue: [string, string | number], 
@@ -27,7 +28,7 @@ export default class ShipperService implements Service<IShipper, Shipper> {
 
   async checkIfHasOffers(id: string | number): Promise<Error | void> {
     const shipper = await this.model.findOne(
-      { where: { id }, include: { model: Offer, as: 'offers' } },
+      { where: { id }, include: { model: this.modelRelations, as: 'offers' } },
     ) as unknown as IShipperWithOffers;
 
     if (shipper.offers.length) {
