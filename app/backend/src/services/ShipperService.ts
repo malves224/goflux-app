@@ -1,4 +1,4 @@
-import { Model, ModelStatic } from 'sequelize';
+import { Op, Model, ModelStatic } from 'sequelize';
 import Offer from '../database/models/offer';
 import Shipper from '../database/models/shipper';
 import { Service } from '../interfaces/Service';
@@ -13,6 +13,10 @@ export default class ShipperService implements Service<IShipper, Shipper> {
 
   findAllActive() {
     return this.model.findAll({ where: { active: true } });
+  }
+
+  static sanitizationDoc(doc: string) {
+    return doc.replace(/[^\d]+/g, '');
   }
 
   async checkIfExist(
@@ -53,17 +57,23 @@ export default class ShipperService implements Service<IShipper, Shipper> {
 
   async create(shipper: IShipper) {
     await this.checkIfExist(['doc', shipper.doc], { erroIfExist: true });
-    return this.model.create(shipper);
+    const shipperClean = {
+      ...shipper,
+      doc: ShipperService.sanitizationDoc(shipper.doc),
+    } as IShipper;
+    return this.model.create(shipperClean);
   }
 
   async findAll() {
     return this.model.findAll();
   }
 
-  async findOne(id: string | number) {
+  async findOne(idOrDoc: string | number) {
     return this.model.findOne(
       {
-        where: { id },
+        where: { [Op.or]: [
+          { doc: idOrDoc }, { id: idOrDoc },
+        ] },
         include: { model: this.modelRelations, as: this.tableNameRelations },
       },
     );

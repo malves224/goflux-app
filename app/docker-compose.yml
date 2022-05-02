@@ -1,10 +1,30 @@
 services:
-  db-postgres:
+  backend:
+    build: ./backend
+    ports:
+      - 3001:3001
+    restart: 'always'
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - PORT=3001
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=123456
+      - DB_NAME=goflux
+      - DB_HOST=db
+      - DB_PORT=5432
+    healthcheck:
+      test: ["CMD", "lsof", "-t", "-i:3001"] # Caso utilize outra porta interna para o back, altere ela aqui também
+      timeout: 10s
+      retries: 5
+  db:
     image: postgres
     restart: always
     ports:
       - 5432:5432
     environment:
+      - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=123456
     healthcheck:
       test: ["CMD-SHELL", "pg_isready"]
