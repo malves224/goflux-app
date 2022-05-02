@@ -15,6 +15,10 @@ export default class ShipperService implements Service<IShipper, Shipper> {
     return this.model.findAll({ where: { active: true } });
   }
 
+  static sanitizationDoc(doc: string) {
+    return doc.replace(/[^\d]+/g, '');
+  }
+
   async checkIfExist(
     columnWithValue: [string, string | number], 
     options = { erroIfExist: false },
@@ -53,7 +57,11 @@ export default class ShipperService implements Service<IShipper, Shipper> {
 
   async create(shipper: IShipper) {
     await this.checkIfExist(['doc', shipper.doc], { erroIfExist: true });
-    return this.model.create(shipper);
+    const shipperClean = {
+      ...shipper,
+      doc: ShipperService.sanitizationDoc(shipper.doc),
+    } as IShipper;
+    return this.model.create(shipperClean);
   }
 
   async findAll() {
