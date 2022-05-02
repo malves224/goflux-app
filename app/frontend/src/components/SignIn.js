@@ -9,6 +9,7 @@ import {
   Button,
 } from '@mui/material';
 import React, { useState } from 'react';
+import formatCnpj from '../script';
 
 function SignIn() {
   const [dataLogin, setDataLogin] = useState({
@@ -20,7 +21,14 @@ function SignIn() {
     const { name, value } = target;
     setDataLogin({
       ...dataLogin,
-      [name]: [value],
+      [name]: value,
+    });
+  };
+
+  const handleBlur = () => {
+    setDataLogin({
+      ...dataLogin,
+      cnpj: formatCnpj(dataLogin.cnpj),
     });
   };
 
@@ -36,7 +44,7 @@ function SignIn() {
     >
       <TextField
         onChange={handleChange}
-        onBlur={() => console.log('on blur')}
+        onBlur={handleBlur}
         type="text"
         value={cnpj}
         id="email"
