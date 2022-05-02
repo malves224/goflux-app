@@ -14,6 +14,17 @@ function DataProvider({ children }) {
 
   const [offersUser, setOffersUser] = useState([]);
 
+  const [alertGlobal, setAlertGlobal] = useState({
+    value: '', severity: 'error', open: false,
+  });
+
+  const setOpenAlert = (bool) => {
+    setAlertGlobal({
+      ...alertGlobal,
+      open: bool,
+    });
+  };
+
   return (
     <dataUserContext.Provider
       value={ {
@@ -21,6 +32,9 @@ function DataProvider({ children }) {
         setUserData,
         offersUser,
         setOffersUser,
+        alertGlobal,
+        setAlertGlobal,
+        setOpenAlert,
       } }
     >
       { children }
