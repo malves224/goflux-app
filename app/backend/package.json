@@ -4,6 +4,7 @@
   "description": "backend para a aplicação goFlux.",
   "main": "./build/server.js",
   "scripts": {
+    "start:reset": "npm run db:reset && ts-node src/index.ts",
     "start": "ts-node src/index.ts",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "db:reset": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
