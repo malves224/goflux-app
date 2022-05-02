@@ -4,7 +4,6 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('offers',[
       {
-        "id": 1,
         "id_customer": 1,
         "from": "Porto Alegre - RS",
         "to": "São Paulo - SP",
@@ -13,7 +12,6 @@ module.exports = {
         "amount_type": "TON"
       },
       {
-        "id": 2,
         "id_customer": 1,
         "from": "Oiapoque - AP",
         "to": "Chui - RS",
@@ -22,7 +20,6 @@ module.exports = {
         "amount_type": "TON"
       },
       {
-        "id": 3,
         "id_customer": 2,
         "from": "Porto Alegre - RS",
         "to": "Santos - SP",
