@@ -4,8 +4,7 @@
         "es2021": true
     },
     "extends": [
-        "trybe-frontend",
-        "airbnb"
+        "trybe-frontend"
     ],
     "parserOptions": {
         "ecmaFeatures": {

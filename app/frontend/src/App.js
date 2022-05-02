@@ -8,7 +8,7 @@ function App() {
       <Route
         exact
         path="/"
-        render={() => <Login />}
+        render={ () => <Login /> }
       />
     </Switch>
   );
