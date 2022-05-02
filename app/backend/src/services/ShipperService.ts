@@ -1,4 +1,4 @@
-import { Model, ModelStatic } from 'sequelize';
+import { Op, Model, ModelStatic } from 'sequelize';
 import Offer from '../database/models/offer';
 import Shipper from '../database/models/shipper';
 import { Service } from '../interfaces/Service';
@@ -60,10 +60,12 @@ export default class ShipperService implements Service<IShipper, Shipper> {
     return this.model.findAll();
   }
 
-  async findOne(id: string | number) {
+  async findOne(idOrDoc: string | number) {
     return this.model.findOne(
       {
-        where: { id },
+        where: { [Op.or]: [
+          { doc: idOrDoc }, { id: idOrDoc },
+        ] },
         include: { model: this.modelRelations, as: this.tableNameRelations },
       },
     );
