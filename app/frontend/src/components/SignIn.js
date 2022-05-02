@@ -8,8 +8,7 @@ import {
   Radio,
   Button,
 } from '@mui/material';
-import React, { useContext, useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
 import dataUserContext from '../context/Context';
 import requestApi from '../api';
 import formatCnpj, { checkCnpj, sanitizationCnpj, storage } from '../script';
@@ -19,13 +18,7 @@ function SignIn() {
     cnpj: '',
     role: 'Embarcador',
   });
-  const { userData, setUserData, setAlertGlobal } = useContext(dataUserContext);
-  const history = useHistory();
-
-  useEffect(() => {
-    const userStorage = storage.get('userInfo');
-    if (userStorage) history.push(userStorage.role);
-  }, [history, userData.role]);
+  const { setUserData, setAlertGlobal } = useContext(dataUserContext);
 
   const handleChange = ({ target }) => {
     const { name, value } = target;
@@ -69,13 +62,19 @@ function SignIn() {
         height: '250px',
       } }
     >
+      <h1
+        style={ {
+          textAlign: 'center',
+        } }
+      >
+        Login
+      </h1>
       <TextField
         onChange={ handleChange }
         onBlur={ handleBlur }
         length="12"
         type="text"
         value={ cnpj }
-        id="email"
         label="CNPJ"
         name="cnpj"
         variant="outlined"

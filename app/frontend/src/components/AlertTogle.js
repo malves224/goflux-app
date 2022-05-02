@@ -8,7 +8,6 @@ const AlertTogle = ({ severity, children, switchValue }) => {
   const TIME_FOR_CLOSE_ALERT = 3000;
 
   useEffect(() => {
-    console.log('open?', alertOpen);
     if (alertOpen) {
       setTimeout(() => setAlertOpen(false), TIME_FOR_CLOSE_ALERT);
     }
