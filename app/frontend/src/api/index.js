@@ -10,6 +10,6 @@ export default async function requestApi(endpoint, method, payload) {
     body: bodyData,
   };
   const response = await fetch(url + endpoint, requestOptions);
-  const responseData = [response.json(), response.status];
+  const responseData = response.json();
   return responseData;
 }
