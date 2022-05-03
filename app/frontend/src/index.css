@@ -3,6 +3,14 @@
   margin: 0;
 }
 
+div {
+  padding: 0;
+}
+
+.rows-table {
+  cursor: pointer;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
