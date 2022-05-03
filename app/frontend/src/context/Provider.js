@@ -2,15 +2,17 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import dataUserContext from './Context';
 
+const INITIAL_STATE_USER = {
+  id: '',
+  name: '',
+  doc: '',
+  about: '',
+  site: '',
+  role: '',
+};
+
 function DataProvider({ children }) {
-  const [userData, setUserData] = useState({
-    id: '',
-    name: '',
-    doc: '',
-    about: '',
-    site: '',
-    role: '',
-  });
+  const [userData, setUserData] = useState(INITIAL_STATE_USER);
 
   const [offersUser, setOffersUser] = useState([]);
 
@@ -36,6 +38,10 @@ function DataProvider({ children }) {
     });
   };
 
+  const clearUserData = () => {
+    setUserData(INITIAL_STATE_USER);
+  };
+
   return (
     <dataUserContext.Provider
       value={ {
@@ -48,6 +54,7 @@ function DataProvider({ children }) {
         setOpenAlert,
         offerWithBids,
         setOfferWithBids,
+        clearUserData,
       } }
     >
       { children }
