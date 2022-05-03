@@ -1,6 +1,7 @@
 import { Button, Box, TextField, InputAdornment, IconButton } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import React, { useState, useContext, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { DataGrid } from '@mui/x-data-grid';
 import dataUserContext from '../context/Context';
 import ModalGeneric from './ModalGeneric';
@@ -12,6 +13,7 @@ function Offers() {
   const [offersFiltred, setOffersFiltred] = useState(offersRows);
   const [modalIsOpenCreate, setModalIsOpenCreate] = useState(false);
   const ROW_PER_PAGE = 10;
+  const history = useHistory();
 
   const columnsConfig = [
     { field: 'origemDestino',
@@ -109,14 +111,13 @@ function Offers() {
       </Box>
       <DataGrid
         checkboxSelection={ false }
-        onRowClick={ (id) => console.log(id) }
+        onRowClick={ ({ id }) => history.replace(`OfertaLances/${id}`) }
         sx={ {
           height: '600px',
         } }
         getRowClassName={ () => 'rows-table' }
         rows={ offersFiltred }
         columns={ columnsConfig }
-        pageSize={ 8 }
         rowsPerPageOptions={ [ROW_PER_PAGE] }
       />
     </Box>
