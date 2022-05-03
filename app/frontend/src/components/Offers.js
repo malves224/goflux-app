@@ -3,11 +3,14 @@ import SearchIcon from '@mui/icons-material/Search';
 import React, { useState, useContext, useEffect } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import dataUserContext from '../context/Context';
+import ModalGeneric from './ModalGeneric';
+import FormCreateOffers from './FormCreateOffers';
 
 function Offers() {
   const { offersUser } = useContext(dataUserContext);
   const [offersRows, setOffersRows] = useState([]);
   const [offersFiltred, setOffersFiltred] = useState(offersRows);
+  const [modalIsOpenCreate, setModalIsOpenCreate] = useState(false);
   const ROW_PER_PAGE = 10;
 
   const columnsConfig = [
@@ -47,7 +50,7 @@ function Offers() {
       setOffersFiltred(rows);
     };
     getRowsOffersFromProvider();
-  }, [offersUser]);
+  }, [offersUser, setModalIsOpenCreate]);
 
   const handleChangeFilter = ({ target }) => {
     const { value } = target;
@@ -65,6 +68,15 @@ function Offers() {
         paddingTop: '40px',
       } }
     >
+      <ModalGeneric
+        sx={ { width: '40%', height: '400px' } }
+        stateForOpen={ [modalIsOpenCreate, setModalIsOpenCreate] }
+        actionCaseConfirm={ () => console.log('cadastrar') }
+      >
+        <FormCreateOffers
+          closeModalFunc={ setModalIsOpenCreate }
+        />
+      </ModalGeneric>
       <Box
         sx={ {
           display: 'flex',
@@ -89,7 +101,7 @@ function Offers() {
         <h1>Suas ofertas.</h1>
         <Button
           size="small"
-          onClick={ () => console.log('click') }
+          onClick={ () => setModalIsOpenCreate(true) }
           variant="contained"
         >
           Nova oferta
