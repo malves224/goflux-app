@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import AlertTogle from './components/AlertTogle';
 import dataUserContext from './context/Context';
@@ -14,7 +14,7 @@ function App() {
   const { open, severity } = alertGlobal;
   const [userBeLogged, setUserBeLogged] = useState(!!userData.id);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const userDataStorage = storage.get('userInfo');
     setUserBeLogged(!!userData.id);
     if (!userData.id && userDataStorage !== null) {

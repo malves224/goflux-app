@@ -1,9 +1,9 @@
-import { Container } from '@mui/material';
+import { Box } from '@mui/material';
 import React from 'react';
 
 function NavBar() {
   return (
-    <Container
+    <Box
       sx={ {
         display: 'flex',
         backgroundColor: 'green',
@@ -15,7 +15,7 @@ function NavBar() {
     >
       <div>img</div>
       <div>info user</div>
-    </Container>
+    </Box>
   );
 }
 
