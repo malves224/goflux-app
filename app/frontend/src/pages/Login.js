@@ -1,5 +1,5 @@
 import { Card, Container, Button } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Register from '../components/Register';
 import SignIn from '../components/SignIn';
@@ -8,11 +8,8 @@ import { storage } from '../script';
 function Login() {
   const [signingUp, setSigningUp] = useState(false);
   const history = useHistory();
-
-  useEffect(() => {
-    const userStorage = storage.get('userInfo');
-    if (userStorage) history.push(userStorage.role);
-  }, [history]);
+  const userStorage = storage.get('userInfo');
+  if (userStorage) history.push(userStorage.role);
 
   return (
     <Container
