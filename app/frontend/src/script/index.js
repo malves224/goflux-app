@@ -14,10 +14,15 @@ function sanitizationCnpj(cnpj) {
   return cnpj.replace(/[^\d]+/g, '');
 }
 
-export default formatCnpj;
+function calculatePorcentagem(valorInicial, ValorCurrent) {
+  const porcentagem = (ValorCurrent / valorInicial) * 100;
+  return porcentagem.toFixed();
+}
 
+export default formatCnpj;
 export {
   checkCnpj,
   sanitizationCnpj,
   storage,
+  calculatePorcentagem,
 };
