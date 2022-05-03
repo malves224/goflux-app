@@ -7,14 +7,29 @@ import requestApi from '../api';
 import RowDataBids from '../components/RowDataBids';
 
 function OfferWithBids() {
-  const { offerWithBids: offerData, setOfferWithBids } = useContext(dataUserContext);
+  const { offerWithBids: offerData,
+    setOfferWithBids,
+    userData,
+    setAlertGlobal } = useContext(dataUserContext);
   const { id: idOffer } = useParams();
   const history = useHistory();
+
+  const trowAlertNoAuth = () => {
+    setAlertGlobal({
+      value: 'Erro ao resgatar os lances dessa oferta.',
+      severity: 'error',
+      open: true,
+    });
+  };
 
   useEffect(() => {
     const getOffer = async () => {
       const endpoint = `/oferta/${idOffer}`;
       const response = await requestApi(endpoint, 'GET');
+      if (response.id_customer !== +userData.id) {
+        trowAlertNoAuth();
+        history.replace(`${userData.role}`);
+      }
       setOfferWithBids(response);
     };
     getOffer();
