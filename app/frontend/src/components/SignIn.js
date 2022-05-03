@@ -9,6 +9,7 @@ import {
   Button,
 } from '@mui/material';
 import React, { useContext, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import dataUserContext from '../context/Context';
 import requestApi from '../api';
 import formatCnpj, { checkCnpj, sanitizationCnpj, storage } from '../script';
@@ -19,6 +20,7 @@ function SignIn() {
     role: 'Embarcador',
   });
   const { setUserData, setAlertGlobal } = useContext(dataUserContext);
+  const history = useHistory();
 
   const handleChange = ({ target }) => {
     const { name, value } = target;
@@ -49,6 +51,7 @@ function SignIn() {
     const userInfo = { id, name, about, doc, site, active, role: dataLogin.role };
     setUserData(userInfo);
     storage.set('userInfo', userInfo);
+    history.push(userInfo.role);
   };
 
   const { cnpj, role } = dataLogin;
