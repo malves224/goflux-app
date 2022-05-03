@@ -1,9 +1,16 @@
 import { Card, Container, Button } from '@mui/material';
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import Register from '../components/Register';
 import SignIn from '../components/SignIn';
+import { storage } from '../script';
 
 function Login() {
   const [signingUp, setSigningUp] = useState(false);
+  const history = useHistory();
+  const userStorage = storage.get('userInfo');
+  if (userStorage) history.push(userStorage.role);
+
   return (
     <Container
       sx={ {
@@ -23,9 +30,12 @@ function Login() {
         } }
       >
         {signingUp
-          ? <p>cadastro</p>
+          ? (<Register />)
           : (<SignIn />) }
-        <Button onClick={ () => setSigningUp(!signingUp) } variant="text">
+        <Button
+          onClick={ () => setSigningUp(!signingUp) }
+          variant="text"
+        >
           {signingUp ? 'Voltar' : 'Cadastar'}
         </Button>
 
