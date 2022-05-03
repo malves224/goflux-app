@@ -28,14 +28,12 @@ function RowDataBids() {
       width: 200,
       align: 'center',
       headerAlign: 'center',
-      sortable: false,
     },
     { field: 'valuePerAmount',
       headerName: 'Preço por peso (R$)',
       width: 200,
       align: 'center',
       headerAlign: 'center',
-      sortable: false,
     },
   ];
 

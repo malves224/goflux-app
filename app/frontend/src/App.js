@@ -7,6 +7,8 @@ import Conveyor from './pages/Conveyor';
 import Shipper from './pages/Shipper';
 import NavBar from './components/NavBar';
 import { storage } from './script';
+import OfferWithBids from './pages/OfferWithBids';
+import RequireAuth from './components/RoutePrivate';
 
 function App() {
   const {
@@ -40,12 +42,18 @@ function App() {
         <Route
           exact
           path="/Transportador"
-          render={ () => <Conveyor /> }
+          render={ () => <RequireAuth><Conveyor /></RequireAuth> }
         />
         <Route
           exact
+          path="/OfertaLances/:id"
+          render={ () => <RequireAuth><OfferWithBids /></RequireAuth> }
+        />
+
+        <Route
+          exact
           path="/Embarcador"
-          render={ () => <Shipper /> }
+          render={ () => <RequireAuth><Shipper /></RequireAuth> }
         />
       </Switch>
     </>
