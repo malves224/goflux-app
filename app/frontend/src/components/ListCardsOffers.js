@@ -1,9 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useEffect } from 'react';
 import { Box } from '@mui/system';
 import CardOffer from './CardOffer';
+import requestApi from '../api';
 
-function ListCardsOffers({ listOffers }) {
+function ListCardsOffers() {
+  const [listOffers, serOffersList] = useState([]);
+
+  useEffect(() => {
+    requestApi('/oferta', 'GET')
+      .then((res) => serOffersList(res));
+  }, []);
+
   return (
     <Box
       sx={ {
@@ -19,6 +26,7 @@ function ListCardsOffers({ listOffers }) {
             <CardOffer
               sx={ {
                 marginBottom: '20px',
+                marginRight: '20px',
                 width: '180px',
               } }
               key={ offer.id }
@@ -30,25 +38,5 @@ function ListCardsOffers({ listOffers }) {
     </Box>
   );
 }
-
-const objOfferpropTypes = {
-  offerData: PropTypes.shape({
-    from: PropTypes.string,
-    to: PropTypes.string,
-    initial_value: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]),
-    amount: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]),
-    amount_type: PropTypes.string,
-  }).isRequired,
-};
-
-ListCardsOffers.propTypes = {
-  listOffers: PropTypes.arrayOf(objOfferpropTypes).isRequired,
-};
 
 export default ListCardsOffers;

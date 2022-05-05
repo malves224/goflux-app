@@ -1,22 +1,15 @@
 import { Box, Button, Card } from '@mui/material';
-import React, { useState, useEffect } from 'react';
-import requestApi from '../api';
+import React, { useState } from 'react';
 import ListBidsOfUser from '../components/ListBidsOfUser';
 import ListCardsOffers from '../components/ListCardsOffers';
 
 function Conveyor() {
   const [ofertaOrLance, setOfertaOrLance] = useState('oferta');
-  const [listOffers, serOffersList] = useState([]);
 
   const handleClickOption = ({ target }) => {
     const { value } = target;
     setOfertaOrLance(value);
   };
-
-  useEffect(() => {
-    requestApi('/oferta', 'GET')
-      .then((res) => serOffersList(res));
-  }, []);
 
   return (
     <Box
@@ -64,7 +57,7 @@ function Conveyor() {
         >
           {
             ofertaOrLance === 'oferta'
-              ? <ListCardsOffers listOffers={ listOffers } />
+              ? <ListCardsOffers />
               : <ListBidsOfUser />
           }
         </Card>
