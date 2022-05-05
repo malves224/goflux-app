@@ -11,7 +11,7 @@ module.exports = {
       },
       {
         "id_provider": 1,
-        "id_offer": 1,
+        "id_offer": 2,
         "value": 140.00,
         "amount": 300.00      
       },
@@ -27,12 +27,7 @@ module.exports = {
         "value": 1200.00,
         "amount": 250.00      
       },
-      {
-        "id_provider": 1,
-        "id_offer": 2,
-        "value": 1150.00,
-        "amount": 250.00      
-      },
+
     ]);
   },
 
