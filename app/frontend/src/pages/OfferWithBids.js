@@ -4,7 +4,7 @@ import React, { useContext, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import dataUserContext from '../context/Context';
 import requestApi from '../api';
-import RowDataBids from '../components/RowDataBids';
+import TableDataBidsOfOffer from '../components/TableDataBidsOfOffer';
 
 function OfferWithBids() {
   const { offerWithBids: offerData,
@@ -97,7 +97,7 @@ function OfferWithBids() {
             <p>{`Peso ${amount} ${amountType}`}</p>
             <h2>Ofertas: </h2>
           </Box>
-          <RowDataBids />
+          <TableDataBidsOfOffer />
         </Card>
       </Box>
     </Box>

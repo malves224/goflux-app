@@ -4,7 +4,7 @@ import requestApi from '../api';
 import dataUserContext from '../context/Context';
 import { calculatePorcentagem } from '../script';
 
-function RowDataBids() {
+function TableDataBidsOfOffer() {
   const [rows, setRows] = useState([]);
   const { offerWithBids } = useContext(dataUserContext);
 
@@ -74,4 +74,4 @@ function RowDataBids() {
   );
 }
 
-export default RowDataBids;
+export default TableDataBidsOfOffer;
