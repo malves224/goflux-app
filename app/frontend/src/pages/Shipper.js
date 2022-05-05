@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 import React, { useEffect, useContext } from 'react';
 import requestApi from '../api';
-import Offers from '../components/Offers';
+import TableDataOffersOfShipper from '../components/TableDataOffersOfShipper';
 import dataUserContext from '../context/Context';
 
 function Shipper() {
@@ -23,7 +23,7 @@ function Shipper() {
       } }
     >
       { offersUser
-      && <Offers />}
+      && <TableDataOffersOfShipper />}
     </Box>
   );
 }

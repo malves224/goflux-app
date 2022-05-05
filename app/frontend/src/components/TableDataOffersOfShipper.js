@@ -7,7 +7,7 @@ import dataUserContext from '../context/Context';
 import ModalGeneric from './ModalGeneric';
 import FormCreateOffers from './FormCreateOffers';
 
-function Offers() {
+function TableDataOffersOfShipper() {
   const { offersUser } = useContext(dataUserContext);
   const [offersRows, setOffersRows] = useState([]);
   const [offersFiltred, setOffersFiltred] = useState(offersRows);
@@ -16,22 +16,29 @@ function Offers() {
   const history = useHistory();
 
   const columnsConfig = [
-    { field: 'origemDestino',
-      headerName: 'Origem - Destino',
+    { field: 'from',
+      headerName: 'Origem',
       align: 'center',
       headerAlign: 'center',
-      width: 500 },
+      width: 200,
+    },
+    { field: 'to',
+      headerName: 'Destino',
+      align: 'center',
+      headerAlign: 'center',
+      width: 200,
+    },
     {
       field: 'precoOferta',
       headerName: 'Preço da oferta(R$)',
       type: 'number',
-      width: 500,
+      width: 200,
       headerAlign: 'center',
       align: 'center',
     },
     { field: 'pesoCarga',
       headerName: 'Peso da carga',
-      width: 500,
+      width: 200,
       align: 'center',
       headerAlign: 'center',
       sortable: false,
@@ -44,9 +51,10 @@ function Offers() {
         { id, from, to, initial_value: precoOferta, amount, amount_type: amountType },
       ) => ({
         id,
-        origemDestino: `${from} ${to}`,
+        from,
+        to,
         precoOferta,
-        pesoCarga: `${amount} para ${amountType}`,
+        pesoCarga: `${amount} ${amountType}`,
       }));
       setOffersRows(rows);
       setOffersFiltred(rows);
@@ -66,7 +74,7 @@ function Offers() {
   return (
     <Box
       sx={ {
-        width: '80%',
+        width: '70%',
         paddingTop: '40px',
       } }
     >
@@ -113,8 +121,8 @@ function Offers() {
         onRowClick={ ({ id }) => history.replace(`OfertaLances/${id}`) }
         sx={ {
           height: '600px',
+          padding: '0 20px',
         } }
-        getRowClassName={ () => 'rows-table' }
         rows={ offersFiltred }
         columns={ columnsConfig }
         rowsPerPageOptions={ [ROW_PER_PAGE] }
@@ -123,4 +131,4 @@ function Offers() {
   );
 }
 
-export default Offers;
+export default TableDataOffersOfShipper;
