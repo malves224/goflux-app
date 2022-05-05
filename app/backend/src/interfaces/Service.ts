@@ -1,4 +1,5 @@
 export interface Service<T, TM> {
+  [x: string]: any
   checkIfExist(
     columnWithValue: [string, string | number],
     options: { erroIfExist: boolean },

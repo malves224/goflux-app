@@ -8,7 +8,7 @@ const routeId = `${route}/:id`;
 const bidRouter = Router();
 
 bidRouter
-  .get(routeId, (req, res) => bidController.findOne(req, res))
+  .get(routeId, (req, res) => bidController.findAllByIdOwner(req, res))
   .get(route, (req, res) => bidController.findAllActive(req, res))
   .put(routeId, validationsSchema, (req, res) => bidController
     .update(req, res))

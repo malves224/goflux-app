@@ -24,16 +24,15 @@ function SignIn() {
 
   const handleChange = ({ target }) => {
     const { name, value } = target;
+    if (name === 'cnpj') {
+      return setDataLogin({
+        ...dataLogin,
+        cnpj: formatCnpj(value),
+      });
+    }
     setDataLogin({
       ...dataLogin,
       [name]: value,
-    });
-  };
-
-  const handleBlur = () => {
-    setDataLogin({
-      ...dataLogin,
-      cnpj: formatCnpj(dataLogin.cnpj),
     });
   };
 
@@ -74,7 +73,7 @@ function SignIn() {
       </h1>
       <TextField
         onChange={ handleChange }
-        onBlur={ handleBlur }
+        onCopy={ handleChange }
         length="12"
         type="text"
         value={ cnpj }

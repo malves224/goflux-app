@@ -2,8 +2,9 @@ import { Box, Button } from '@mui/material';
 import React, { useContext } from 'react';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import logoGoflux from '../img/logo-goflux.svg';
 import dataUserContext from '../context/Context';
-import { storage } from '../script';
+import formatCnpj, { storage } from '../script';
 
 function NavBar() {
   const { userData, clearUserData } = useContext(dataUserContext);
@@ -25,7 +26,7 @@ function NavBar() {
       } }
     >
       <Box
-        src="https://www.goflux.com.br/wp-content/uploads/2021/07/logo-02.svg"
+        src={ logoGoflux }
         component="img"
         sx={ {
           width: '170px',
@@ -53,7 +54,7 @@ function NavBar() {
           } }
         >
           <p>{userData.name}</p>
-          <p>{userData.doc}</p>
+          <p>{formatCnpj(userData.doc)}</p>
         </Box>
         <Button
           size="small"
