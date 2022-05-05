@@ -24,6 +24,10 @@ export default class BidService implements Service<IBids, Bid> {
     }
   }
 
+  async findAllByOwner(id: | string) {
+    return this.model.findAll({ where: { id_provider: id } });
+  }
+
   async findByKeysPair(
     id_provider: number | string, 
     id_offer: number | string,
