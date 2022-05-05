@@ -38,16 +38,20 @@ function CardOffer({ offerData, sx }) {
       amount: bidInfo.amount,
     };
     requestApi('/lance', 'POST', payload)
-      .then(() => {
+      .then((res) => {
+        if (res.message) {
+          return setAlertGlobal({
+            value: res.message,
+            severity: 'error',
+            open: true,
+          });
+        }
         setAlertGlobal({
           value: 'Lance criado com sucesso',
           severity: 'info',
           open: true,
         });
         setisOpenCreateBid(false);
-      })
-      .catch((message) => {
-        console.log(message);
       });
   };
 
