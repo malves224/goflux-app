@@ -73,7 +73,6 @@ function Offers() {
       <ModalGeneric
         sx={ { width: '40%', height: '400px' } }
         stateForOpen={ [modalIsOpenCreate, setModalIsOpenCreate] }
-        actionCaseConfirm={ () => console.log('cadastrar') }
       >
         <FormCreateOffers
           closeModalFunc={ setModalIsOpenCreate }

@@ -173,7 +173,6 @@ function FormCreateOffers({ closeModalFunc }) {
         name="initialValue"
         variant="outlined"
         size="small"
-        min
       />
       <TextField
         type="number"
