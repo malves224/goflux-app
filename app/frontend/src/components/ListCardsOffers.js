@@ -1,4 +1,3 @@
-import { Card } from '@mui/material';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Box } from '@mui/system';
@@ -6,39 +5,29 @@ import CardOffer from './CardOffer';
 
 function ListCardsOffers({ listOffers }) {
   return (
-    <Card
+    <Box
       sx={ {
-        justifyContent: 'center',
+        alignItems: 'baseline',
         display: 'flex',
-        minHeight: '350px',
-        padding: '10px 50px',
-        width: '90%',
+        justifyContent: 'space-evenly',
+        flexFlow: 'wrap',
       } }
     >
-      <Box
-        sx={ {
-          alignItems: 'baseline',
-          display: 'flex',
-          justifyContent: 'space-evenly',
-          flexFlow: 'wrap',
-        } }
-      >
-        {
-          listOffers.length
-            ? listOffers.map((offer) => (
-              <CardOffer
-                sx={ {
-                  marginBottom: '20px',
-                  width: '180px',
-                } }
-                key={ offer.id }
-                offerData={ offer }
-              />
-            ))
-            : <p>Sem ofertas disponiveis no momento</p>
-        }
-      </Box>
-    </Card>
+      {
+        listOffers.length
+          ? listOffers.map((offer) => (
+            <CardOffer
+              sx={ {
+                marginBottom: '20px',
+                width: '180px',
+              } }
+              key={ offer.id }
+              offerData={ offer }
+            />
+          ))
+          : <p>Sem ofertas disponiveis no momento</p>
+      }
+    </Box>
   );
 }
 

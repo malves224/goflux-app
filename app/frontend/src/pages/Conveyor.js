@@ -1,6 +1,7 @@
 import { Box, Button, Card } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 import requestApi from '../api';
+import ListBidsOfUser from '../components/ListBidsOfUser';
 import ListCardsOffers from '../components/ListCardsOffers';
 
 function Conveyor() {
@@ -52,11 +53,21 @@ function Conveyor() {
             Seus lances
           </Button>
         </Box>
-        {
-          ofertaOrLance === 'oferta'
-            ? <ListCardsOffers listOffers={ listOffers } />
-            : <Card>Lista de lances</Card>
-        }
+        <Card
+          sx={ {
+            justifyContent: 'center',
+            display: 'flex',
+            minHeight: '350px',
+            padding: '10px 50px',
+            width: '90%',
+          } }
+        >
+          {
+            ofertaOrLance === 'oferta'
+              ? <ListCardsOffers listOffers={ listOffers } />
+              : <ListBidsOfUser />
+          }
+        </Card>
       </Box>
     </Box>
   );
