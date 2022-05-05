@@ -83,7 +83,11 @@ function TableDataBidsOfConveyor({ bidsOfUser }) {
 }
 
 TableDataBidsOfConveyor.propTypes = {
-  bidsOfUser: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.number)).isRequired,
+  bidsOfUser: PropTypes
+    .arrayOf(PropTypes.objectOf(PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]))).isRequired,
 };
 
 export default TableDataBidsOfConveyor;
