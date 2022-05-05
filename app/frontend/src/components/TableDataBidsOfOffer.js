@@ -39,11 +39,13 @@ function TableDataBidsOfOffer() {
 
   useEffect(() => {
     const generateRowData = () => {
-      const allPromise = offerWithBids.bids.map(async ({ id, value, amount }) => {
-        const response = await requestApi(`/transportador/${id}`, 'GET');
+      const allPromise = offerWithBids.bids.map(async (
+        { id_provider: idProvider, value, amount },
+      ) => {
+        const response = await requestApi(`/transportador/${idProvider}`, 'GET');
         const { name } = response;
         return {
-          id,
+          id: idProvider,
           transportadora: name,
           value,
           amountPercentage: calculatePorcentagem(offerWithBids.amount, amount),
@@ -58,6 +60,8 @@ function TableDataBidsOfOffer() {
       setRows(rowsResponse);
     };
     setRowData();
+
+    return () => setRows([]);
   }, [offerWithBids]);
 
   return (
