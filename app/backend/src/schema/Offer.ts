@@ -5,22 +5,27 @@ class Offer {
     from: {
       'any.required': 'Origem é obrigatório.',
       'string.base': 'Origem com tipo de dado errado.',
+      'string.empty': 'Origem é obrigatório.',
     },
     to: {
       'any.required': 'Destino é obrigatório.',
       'string.base': 'destino com tipo de dado errado.',
+      'string.empty': 'Destino é obrigatório.',
     },
     initial_value: {
       'any.required': 'Valor incial é obrigatório.',
       'number.base': 'Valor inicial com tipo de dado errado.',
+      'number.empty': 'Valor incial é obrigatório.',
     },
     amount: {
       'any.required': 'Quantidade é obrigatório.',
       'number.base': 'Quantidade com tipo de dado errado.',
+      'number.empty': 'Quantidade é obrigatório.',
     },
     amount_type: {
       'any.required': 'Unidade de medida de peso é obrigatório.',
       'string.base': 'Unidade de medida de peso com tipo de dado errado.',
+      'string.empty': 'Unidade de medida de peso é obrigatório.',
     },
   };
 

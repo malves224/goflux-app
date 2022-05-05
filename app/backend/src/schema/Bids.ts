@@ -5,10 +5,12 @@ class Bids {
     value: {
       'any.required': 'Valor é obrigatório.',
       'number.base': 'Valor com tipo de dado errado.',
+      'number.empty': 'Valor é obrigatório.',
     },
     amount: {
       'any.required': 'Quantidade é obrigatório.',
       'number.base': 'Quantidade com tipo de dado errado.',
+      'number.empty': 'Quantidade é obrigatório.',
     },
   };
 
