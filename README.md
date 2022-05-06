@@ -17,7 +17,7 @@ Como biblioteca CSS, Material UI.
 
 Clonando a aplicação: 
 
-`git clone git@github.com:malves224/goflux-app.gitt && cd goflux-app/app`
+`git clone git@github.com:malves224/goflux-app.git && cd goflux-app/app`
 
 ### Com docker:
 
