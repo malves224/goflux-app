@@ -6,20 +6,24 @@ class ShipperAndConveyorsSchema {
       'any.required': 'Nome é obrigatório.',
       'string.base': 'Nome com tipo de dado errado.',
       'string.min': 'Nome deve ser maior que 2 caracteres.',
+      'string.empty': 'Nome é obrigatório.',
     },
     doc: {
       'any.required': 'CNPJ é obrigatório.',
       'string.base': 'CNPJ com tipo de dado errado.',
       'string.pattern.base': 'CNPJ com formato invalido.',
+      'string.empty': 'CNPJ é obrigatório.',
     },
     about: {
       'any.required': 'Descrição é obrigatório.',
       'string.base': 'Descrição com tipo de dado errado.',
       'string.min': 'Descrição deve ser maior que 2 caracteres.',
+      'string.empty': 'Descrição é obrigatório.',
     },
     site: {
       'any.required': 'Site é obrigatório.',
       'string.base': 'Site com tipo de dado errado.',
+      'string.empty': 'Site é obrigatório.',
     },
   };
 

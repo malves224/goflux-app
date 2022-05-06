@@ -25,16 +25,15 @@ function Register() {
 
   const handleChange = ({ target }) => {
     const { name, value } = target;
+    if (name === 'doc') {
+      return setDataCadastro({
+        ...dataCadastro,
+        doc: formatCnpj(value),
+      });
+    }
     setDataCadastro({
       ...dataCadastro,
       [name]: value,
-    });
-  };
-
-  const handleBlur = () => {
-    setDataCadastro({
-      ...dataCadastro,
-      doc: formatCnpj(dataCadastro.doc),
     });
   };
 
@@ -56,6 +55,11 @@ function Register() {
     }
     const { id, name, active, about, doc, site } = responseData;
     const userInfo = { id, name, about, doc, site, active, role: dataCadastro.role };
+    setAlertGlobal({
+      open: true,
+      severity: 'info',
+      value: 'Cadastro efetuado com sucesso, Seja Bem vindo!',
+    });
     setUserData(userInfo);
     storage.set('userInfo', userInfo);
     history.push(userInfo.role);
@@ -98,9 +102,9 @@ function Register() {
       </FormControl>
       <TextField
         onChange={ handleChange }
-        onBlur={ handleBlur }
+        onCopy={ handleChange }
+        value={ dataCadastro.doc }
         type="text"
-        id="email"
         label="CNPJ"
         name="doc"
         variant="outlined"
@@ -109,6 +113,7 @@ function Register() {
       <TextField
         onChange={ handleChange }
         type="text"
+        value={ dataCadastro.name }
         label="Nome"
         name="name"
         variant="outlined"
@@ -118,6 +123,7 @@ function Register() {
         onChange={ handleChange }
         multiline
         maxRows={ 4 }
+        value={ dataCadastro.about }
         label="Descrição"
         name="about"
         variant="outlined"
