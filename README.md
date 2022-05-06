@@ -1,4 +1,6 @@
 # Goflux app
+Em goflux app é possível criar embarcadores, transportadores, ofertas e lances, facilitando contratação de freetes.
+No frotend cada um tem sua interface (embarcador e transportador).
 
 ## Stacks utilizadas 
 
@@ -25,6 +27,13 @@ Após clonar o projeto basta montar a aplicação pelo docker utilizando o coman
 Após terminar de montar os containers das imagens o frontend estará acessível na porta 3000 e o backend na porta 3001.
 
 :warning: As portas 3000 e 3001 devem estar livres :warning:
+
+## Login
+
+É preciso fazer login utilizando apenas o CNPJ segue alguns CNPJ para acessar caso não queira efetuar o cadastro para acessar: 
+
+transportador: 99974145000150
+embarcador: 60429484000110
 
 ## Documentação API.
 Utilizei o Postaman para gerar documentação da API segue o link:
