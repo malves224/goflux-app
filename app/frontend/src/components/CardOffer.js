@@ -71,11 +71,7 @@ function CardOffer({ offerData, sx }) {
 
   const handleChangePriceBid = ({ target }) => {
     const { value, name } = target;
-    if (value < offerData[name]) {
-      return setBidInfo({
-        ...bidInfo,
-        [name]: initialValue });
-    }
+    if (value < 0) return;
     setBidInfo({
       ...bidInfo,
       [name]: value,
