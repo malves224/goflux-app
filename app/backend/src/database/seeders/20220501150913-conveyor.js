@@ -24,13 +24,6 @@ module.exports = {
         "active": true,
         "site": "https://goflux.com.br/"      
       },
-      {
-        "name": "Transportadora ponta a ponta",
-        "doc": "60310179000188",
-        "about": "Transportadora ponta a ponta, transportando sonhos",
-        "active": false,
-        "site": "https://goflux.com.br/"      
-      },
     ])
   },
 
